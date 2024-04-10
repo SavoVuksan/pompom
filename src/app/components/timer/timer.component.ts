@@ -6,7 +6,7 @@ import { Component, HostBinding } from '@angular/core';
   imports: [],
   templateUrl: './timer.component.html',
   styleUrl: './timer.component.scss',
-  host:{'class': 'p-4 bg-red-500 block'}
+  host:{'class': 'p-4 m-4 flex flex-col rounded border gap-4'}
 })
 export class TimerComponent {
 
