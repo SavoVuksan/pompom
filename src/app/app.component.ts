@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { TimerComponent } from './components/timer/timer.component';
+import { TimerComponent } from './features/timer/timer/timer.component';
 
 @Component({
   selector: 'app-root',

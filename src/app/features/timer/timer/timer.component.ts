@@ -13,5 +13,5 @@ import {CardModule} from 'primeng/card';
   host:{'class': 'p-4 m-4'}
 })
 export class TimerComponent {
-
+  timeLeft: number = 60;
 }
