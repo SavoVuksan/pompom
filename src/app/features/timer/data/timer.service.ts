@@ -20,7 +20,8 @@ import { toObservable } from '@angular/core/rxjs-interop';
 export class TimerService {
   private _state = signalState<TimerData>({
     state: 'not-started',
-    time: 10,
+    currentTime: 10,
+    maxTime: 60,
   });
   state = computed(() => this._state());
   timerState$ = toObservable(this._state.state);
@@ -44,14 +45,14 @@ export class TimerService {
         takeUntil(this.timerState$.pipe(filter((state) => state !== 'running')))
       )
     ),
-    tap(() => patchState(this._state, { time: this._state.time() - 1 })),
-    map(() => this._state.time()),
+    tap(() => patchState(this._state, { currentTime: this._state.currentTime() - 1 })),
+    map(() => this._state.currentTime()),
     tap((time) => {
       if (time <= 0) {
         patchState(this._state,{state: 'completed'})
       }
     }),
-    startWith(this._state.time())
+    startWith(this._state.currentTime())
   );
 
   constructor() {}
@@ -68,6 +69,8 @@ export class TimerService {
       patchState(this._state, { state: 'running' });
     } else if (this._state.state() === 'running') {
       patchState(this._state, { state: 'paused' });
+    }else if(this._state.state() === 'completed'){
+      patchState(this._state, { currentTime: this._state.maxTime(), state: 'running'});
     }
   }
 }

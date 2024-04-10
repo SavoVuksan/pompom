@@ -1,6 +1,7 @@
 export type TimerState = 'not-started' | 'running' | 'paused' | 'completed';
 
 export type TimerData = {
-  time: number
+  currentTime: number,
+  maxTime: number,
   state: TimerState
 };
