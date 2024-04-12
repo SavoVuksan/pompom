@@ -9,8 +9,8 @@ import { toObservable } from "@angular/core/rxjs-interop";
 export const TimerStore = signalStore(
     withState(() => {
         return {
-            maxTime: 25,
-            currentTime: 5,
+            maxTime: 2,
+            currentTime: 2,
             state: "not-started" as TimerState
         } satisfies TimerData
     }),

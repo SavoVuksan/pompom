@@ -1,0 +1,5 @@
+<div class="flex justify-center gap-4">
+    @for (c of [].constructor(this.pomodoroStore.longBreakInterval()); track $index) {
+    <div class="rounded-full h-4 w-4" [ngClass]="this.pomodoroStore.getBreakCounterColor($index)"></div>
+    }
+</div>

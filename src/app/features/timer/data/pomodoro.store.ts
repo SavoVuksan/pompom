@@ -3,23 +3,27 @@ import { PomodoroData, PomodoroState, TimerData } from "../models/timer.model";
 import { computed } from "@angular/core";
 
 const initialState: PomodoroData = {
-    focusDuration: 25,
-    longBreakDuration: 15,
+    focusDuration: 2,
+    longBreakDuration: 2,
     longBreakInterval: 4,
-    pomodoroCount: 1,
-    shortBreakDuration: 5,
+    pomodoroCount: 0,
+    shortBreakDuration: 2,
     state: "focus"
 }
 
 export const PomodoroStore = signalStore(
     { providedIn: 'root' },
     withState(initialState),
-    withComputed(({ state }) => ({
-        title: computed(() => state() === 'focus' ? 'Focus' : 'Break')
+    withComputed(({ state, pomodoroCount, longBreakInterval }) => ({
+        title: computed(() => state() === 'focus' ? 'Focus' : 'Break'),
+        finishedTimers: computed(() => pomodoroCount() % longBreakInterval())
     })),
     withMethods((store) => ({
         switchState() {
             const nextState: PomodoroState = store.state() === 'focus' ? 'break' : 'focus';
+            if (nextState === 'break') {
+                patchState(store, ({ pomodoroCount: store.pomodoroCount() + 1 }))
+            }
             patchState(store, ({ state: nextState }))
         },
         getTimerStoreData() {
@@ -35,6 +39,13 @@ export const PomodoroStore = signalStore(
                     maxTime: store.shortBreakDuration(),
                     state: 'not-started'
                 } satisfies TimerData;
+            }
+        },
+        getBreakCounterColor(counter: number) {
+            if (counter < store.finishedTimers()) {
+                return 'bg-blue-500';
+            } else {
+                return 'bg-gray-500';
             }
         }
     }))
