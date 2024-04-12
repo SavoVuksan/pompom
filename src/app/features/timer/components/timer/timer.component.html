@@ -1,7 +1,7 @@
 <p-card [header]="this.pomodoroStore.title()" class="text-center">
-    {{this.timerService.timeLeft$ | async}}
+    {{this.timerStore.currentTime()}}
     <ng-template pTemplate="footer">
-        <p-button [label]="this.timerService.timerButtonLabel()" (onClick)="this.timerService.toggleTimer()"></p-button>
+        <p-button [label]="this.timerStore.timerButtonLabel()" (onClick)="onClick()"></p-button>
     </ng-template>
 </p-card>
-{{this.timerService.timerState$ | async}}
+{{this.timerStore.state()}}
