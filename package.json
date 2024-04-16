@@ -8,6 +8,7 @@
     "build-image": "podman build -t pomovu:v0.0.1 -f ./Dockerfile .",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test-ci": "ng test --watch=false",
     "lint": "ng lint"
   },
   "private": true,
