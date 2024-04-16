@@ -1,6 +1,9 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: Angular CI
+on: 
+  push:
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]
 jobs:
   Run-Unit-Tests:
     runs-on: ubuntu-latest
@@ -10,7 +13,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-      - run: sudo apt install chromium-browser
-      - run: export CHROME_BIN=/usr/bin/chromium-browser
       - run: npm ci
-      - run: npm run test-ci
+      - run: npm run test:ci

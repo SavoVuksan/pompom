@@ -8,7 +8,8 @@
     "build-image": "podman build -t pomovu:v0.0.1 -f ./Dockerfile .",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test-ci": "ng test --watch=false",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCustom",
+    "build:ci": "ng build --prod",
     "lint": "ng lint"
   },
   "private": true,
@@ -48,6 +49,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.4.38",
+    "puppeteer": "^22.6.5",
     "tailwindcss": "^3.4.3",
     "typescript": "~5.2.2"
   }
