@@ -50,6 +50,8 @@ jobs:
           path: "documentation/"
   
   deploy-docs:
+    # Runs the job only on main
+     if: github.ref == 'refs/heads/main'
      # Add a dependency to the build job
      needs: generate-docs
 
