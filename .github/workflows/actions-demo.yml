@@ -42,7 +42,7 @@ jobs:
         with:
           node-version: '20.x'
       - run: npm ci
-      - run: npm compodoc:build
+      - run: npm run compodoc:build
 
       - name: Upload Docs
         uses: actions/upload-pages-artifact@v3
