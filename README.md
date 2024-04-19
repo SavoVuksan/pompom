@@ -1,27 +1,43 @@
 # Pomovu
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+Pomovu is a pomodoro timer app. I started this project to learn new Angular features. Like Signals and the NgRx SignalStore.
 
-## Development server
+## Requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Node.js
 
-## Code scaffolding
+## Run locally
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Download dependencies
+``` bash
+npm install
+```
+
+Start local devserver
+``` bash
+npm run start
+```
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+``` bash
+npm run build
+```
 
-## Running unit tests
+## Run Unit Tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+``` bash
+npm run test
+```
 
-## Running end-to-end tests
+## Build Documentation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+``` bash
+npm run compodoc:build
+```
 
-## Further help
+## Run Server With Documentation Locally
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm run compodoc:build-and-serve
+```
