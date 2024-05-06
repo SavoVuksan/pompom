@@ -1,5 +1,6 @@
-<img src="./docs/logo.png" width="400px"  style="display: block; margin: 0 auto"></img>
-
+<p align="center">
+<img src="./docs/logo.png" width="400px" >
+</p>
 # PomPom
 
 PomPom is a pomodoro timer app made with Angular. I started this project to learn new Angular features. Like Signals and the NgRx SignalStore.
