@@ -17,5 +17,5 @@
 @layer tailwind-base, primeng, tailwind-utilities;
 
 body{
-    background-color: #e2e8f0;
+    background-color: var(--gray-100);
 }
