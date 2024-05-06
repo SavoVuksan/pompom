@@ -1,7 +1,7 @@
 import { Component, ViewChild, effect, inject } from '@angular/core';
-import { PomodoroStore } from '../../data/pomodoro.store';
+import { PomodoroStore } from '../../stores/pomodoro.store';
 import { TimerComponent } from '../timer/timer.component';
-import { TimerStore } from '../../data/timer.store';
+import { TimerStore } from '../../stores/timer.store';
 import { patchState } from '@ngrx/signals';
 import { BreakCounterComponent } from '../break-counter/break-counter.component';
 
@@ -10,7 +10,7 @@ import { BreakCounterComponent } from '../break-counter/break-counter.component'
   standalone: true,
   imports: [TimerComponent, BreakCounterComponent],
   templateUrl: './pomodoro.component.html',
-  styleUrl: './pomodoro.component.scss'
+  styleUrl: './pomodoro.component.scss',
 })
 export class PomodoroComponent {
   pomodoroStore = inject(PomodoroStore);
@@ -18,10 +18,16 @@ export class PomodoroComponent {
   timer!: TimerComponent;
 
   constructor() {
-    effect(() => {
-      if (this.pomodoroStore.state()) {
-        patchState(this.timer.timerStore, (this.pomodoroStore.getTimerStoreData()))
-      }
-    }, { allowSignalWrites: true })
+    effect(
+      () => {
+        if (this.pomodoroStore.state()) {
+          patchState(
+            this.timer.timerStore,
+            this.pomodoroStore.getTimerStoreData()
+          );
+        }
+      },
+      { allowSignalWrites: true }
+    );
   }
 }

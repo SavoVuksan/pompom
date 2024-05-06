@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { TimerComponent } from './features/timer/components/timer/timer.component';
-import { PomodoroComponent } from './features/timer/components/pomodoro/pomodoro.component';
+import { TimerComponent } from './components/timer/timer.component';
+import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
 import { HeaderComponent } from './components/header/header.component';
 
 @Component({
