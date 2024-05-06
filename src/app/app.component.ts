@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TimerComponent } from './components/timer/timer.component';
-import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
 import { HeaderComponent } from './components/header/header.component';
 
 @Component({
@@ -12,8 +11,8 @@ import { HeaderComponent } from './components/header/header.component';
     CommonModule,
     RouterOutlet,
     TimerComponent,
-    PomodoroComponent,
     HeaderComponent,
+    TimerComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

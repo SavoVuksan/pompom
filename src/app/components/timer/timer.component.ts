@@ -16,11 +16,12 @@ import { AsyncPipe } from '@angular/common';
 import { PomodoroStore } from '../../stores/pomodoro.store';
 import { TimerStore } from '../../stores/timer.store';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { BreakCounterComponent } from '../break-counter/break-counter.component';
 
 @Component({
   selector: 'timer',
   standalone: true,
-  imports: [ButtonModule, CardModule, AsyncPipe],
+  imports: [ButtonModule, CardModule, AsyncPipe, BreakCounterComponent],
   templateUrl: './timer.component.html',
   styleUrl: './timer.component.scss',
   host: { class: 'p-4 m-4' },

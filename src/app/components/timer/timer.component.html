@@ -1,7 +1,21 @@
-<p-card [header]="this.pomodoroStore.title()" class="text-center">
-    {{this.timerStore.currentTime()}}
-    <ng-template pTemplate="footer">
-        <p-button [label]="this.timerStore.timerButtonLabel()" (onClick)="onClick()"></p-button>
-    </ng-template>
+<p-card class="text-center">
+  <ng-template pTemplate="header">
+    <h1 class="font-bold text-4xl text-black p-4">
+      {{ this.pomodoroStore.title() }}
+    </h1>
+  </ng-template>
+
+  <div class="font-bold text-5xl text-black">
+    {{ this.timerStore.currentTime() }}
+  </div>
+
+  <p-button
+    [label]="this.timerStore.timerButtonLabel()"
+    (onClick)="onClick()"
+  ></p-button>
+  <ng-template pTemplate="footer">
+    <div class="p-4 top-line">
+      <break-counter />
+    </div>
+  </ng-template>
 </p-card>
-{{this.timerStore.state()}}
