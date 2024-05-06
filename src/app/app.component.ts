@@ -9,8 +9,8 @@ import { PomodoroComponent } from './features/timer/components/pomodoro/pomodoro
   standalone: true,
   imports: [CommonModule, RouterOutlet, TimerComponent, PomodoroComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'pomovu';
+  title = 'Pom Pom';
 }

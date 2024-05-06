@@ -1,11 +1,11 @@
 {
-  "name": "pomovu",
+  "name": "pompom",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-image": "podman build -t pomovu:v0.0.1 -f ./Dockerfile .",
+    "build-image": "podman build -t pompom:v0.0.1 -f ./Dockerfile .",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCustom",
