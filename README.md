@@ -1,6 +1,6 @@
-# Pomovu
+# PomPom
 
-Pomovu is a pomodoro timer app. I started this project to learn new Angular features. Like Signals and the NgRx SignalStore.
+PomPom is a pomodoro timer app made with Angular. I started this project to learn new Angular features. Like Signals and the NgRx SignalStore.
 
 ## Requirements
 
