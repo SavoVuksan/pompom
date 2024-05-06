@@ -1,3 +1,5 @@
+<img src="./docs/logo.png" width="400px"  style="display: block; margin: 0 auto"></img>
+
 # PomPom
 
 PomPom is a pomodoro timer app made with Angular. I started this project to learn new Angular features. Like Signals and the NgRx SignalStore.
@@ -9,30 +11,32 @@ PomPom is a pomodoro timer app made with Angular. I started this project to lear
 ## Run locally
 
 Download dependencies
-``` bash
+
+```bash
 npm install
 ```
 
 Start local devserver
-``` bash
+
+```bash
 npm run start
 ```
 
 ## Build
 
-``` bash
+```bash
 npm run build
 ```
 
 ## Run Unit Tests
 
-``` bash
+```bash
 npm run test
 ```
 
 ## Build Documentation
 
-``` bash
+```bash
 npm run compodoc:build
 ```
 
