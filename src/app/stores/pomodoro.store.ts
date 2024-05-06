@@ -50,9 +50,9 @@ export const PomodoroStore = signalStore(
     },
     getBreakCounterColor(counter: number) {
       if (counter < store.finishedTimers()) {
-        return 'bg-blue-500';
+        return 'active';
       } else {
-        return 'bg-gray-500';
+        return 'inactive';
       }
     },
   }))
