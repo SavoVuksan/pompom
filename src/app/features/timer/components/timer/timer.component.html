@@ -1,7 +1,0 @@
-<p-card [header]="this.pomodoroStore.title()" class="text-center">
-    {{this.timerStore.currentTime()}}
-    <ng-template pTemplate="footer">
-        <p-button [label]="this.timerStore.timerButtonLabel()" (onClick)="onClick()"></p-button>
-    </ng-template>
-</p-card>
-{{this.timerStore.state()}}

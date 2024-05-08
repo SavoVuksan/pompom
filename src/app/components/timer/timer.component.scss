@@ -1,0 +1,16 @@
+.top-line {
+  border-top: 1px solid var(--gray-200);
+}
+
+::ng-deep {
+  .p-card-body,
+  .p-card-footer {
+    padding: 0;
+  }
+
+  .p-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}

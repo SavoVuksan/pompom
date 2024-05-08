@@ -1,5 +1,5 @@
 @use "sass:meta";
-
+@use "primeicons/primeicons.css";
 @layer tailwind-base {
     @tailwind base;
 }
@@ -15,3 +15,7 @@
   }
 
 @layer tailwind-base, primeng, tailwind-utilities;
+
+body{
+    background-color: var(--gray-100);
+}

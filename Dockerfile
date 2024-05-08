@@ -11,7 +11,7 @@ RUN npm run build
 
 FROM docker.io/nginx:stable-alpine3.17 as ngi
 
-COPY --from=build /dist/src/app/dist/pomovu/browser /usr/share/nginx/html
+COPY --from=build /dist/src/app/dist/pompom/browser /usr/share/nginx/html
 COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 EXPOSE 80
 
