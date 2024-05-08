@@ -32,28 +32,17 @@ jobs:
           name: app-build
           path: |
             dist/pomovu/browser
-
-  generate-docs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - run: npm ci
-      - run: npm run compodoc:build
-
-      - name: Upload Docs
+               - name: Upload Docs
+      - name: Upload App
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "documentation/"
+          path: "dist/pompom/browser"
   
-  deploy-docs:
+  deploy-app:
     # Runs the job only on main
      if: github.ref == 'refs/heads/main'
      # Add a dependency to the build job
-     needs: generate-docs
+     needs: build-app
 
      # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
      permissions:
