@@ -4,5 +4,13 @@
   ></app-header>
   <div class="flex-1 flex items-center">
     <timer class="w-[300px]" />
+    <p-dialog
+      header="Settings"
+      [modal]="true"
+      [visible]="appStore.isSettingsDialogOpen()"
+      [style]="{ width: '25rem' }"
+      (visibleChange)="onVisibilityChange($event)"
+    >
+    </p-dialog>
   </div>
 </div>
