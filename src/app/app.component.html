@@ -1,24 +1,56 @@
 <div class="h-screen flex flex-col justify-items-center items-center">
-  <app-header class="flex flex-row justify-between p-4 items-center w-full"></app-header>
+  <app-header
+    class="flex flex-row justify-between p-4 items-center w-full"
+  ></app-header>
   <div class="flex-1 flex items-center">
     <timer class="w-[300px]" />
-    <p-dialog header="Settings" [modal]="true" [visible]="appStore.isSettingsDialogOpen()"
-      (visibleChange)="onVisibilityChange($event)">
+    <p-dialog
+      header="Settings"
+      [modal]="true"
+      [visible]="settingsStore.isSettingsDialogOpen()"
+      (visibleChange)="onVisibilityChange($event)"
+    >
       <div class="flex gap-6 flex-col">
         <div class="flex gap-2 flex-col">
           <label for="focusDuration">Focus Duration</label>
-          <p-inputNumber inputId="focusDuration" [useGrouping]="false" suffix="min"
-            [ngModel]="this.pomodoroStore.focusDuration().minutes" />
+          <p-inputNumber
+            inputId="focusDuration"
+            [useGrouping]="false"
+            suffix=" min"
+            [(ngModel)]="this.settingsData.focusDuration.minutes"
+          />
           <label for="shortBreakDuration">Short Break Duration</label>
-          <p-inputNumber inputId="shortBreakDuration" [useGrouping]="false" suffix="min" />
+          <p-inputNumber
+            inputId="shortBreakDuration"
+            [useGrouping]="false"
+            suffix=" min"
+            [(ngModel)]="this.settingsData.shortBreakDuration.minutes"
+          />
           <label for="longBreakDuration">Long Break Duration</label>
-          <p-inputNumber inputId="longBreakDuration" [useGrouping]="false" suffix="min" />
+          <p-inputNumber
+            inputId="longBreakDuration"
+            [useGrouping]="false"
+            suffix=" min"
+            [(ngModel)]="this.settingsData.longBreakDuration.minutes"
+          />
           <label for="breakInterval">Break Interval</label>
-          <p-inputNumber inputId="breakInterval" [useGrouping]="false" />
+          <p-inputNumber
+            inputId="breakInterval"
+            [useGrouping]="false"
+            [(ngModel)]="this.settingsData.longBreakInterval"
+          />
         </div>
         <div class="flex justify-end gap-2">
-          <p-button label="Cancel" severity="danger" (onClick)="this.appStore.changeSettingsDialog(false)"></p-button>
-          <p-button label="Save" severity="primary"></p-button>
+          <p-button
+            label="Cancel"
+            severity="danger"
+            (onClick)="this.settingsStore.changeSettingsDialog(false)"
+          ></p-button>
+          <p-button
+            label="Save"
+            severity="primary"
+            (onClick)="onSaveButtonClicked()"
+          ></p-button>
         </div>
       </div>
     </p-dialog>

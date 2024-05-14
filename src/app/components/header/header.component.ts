@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { AppStore } from '../../stores/app.store';
+import { SettingsStore } from '../../stores/settings.store';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,9 @@ import { AppStore } from '../../stores/app.store';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  appStore = inject(AppStore);
+  settingsStore = inject(SettingsStore);
 
   onSettingButtonClicked() {
-    this.appStore.changeSettingsDialog(true);
+    this.settingsStore.changeSettingsDialog(true);
   }
 }

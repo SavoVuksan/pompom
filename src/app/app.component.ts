@@ -9,6 +9,9 @@ import { AppStore } from './stores/app.store';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PomodoroStore } from './stores/pomodoro.store';
 import { FormsModule } from '@angular/forms';
+import { SettingsState, SettingsStore } from './stores/settings.store';
+import { STATE_SIGNAL } from '@ngrx/signals/src/state-signal';
+import { getState } from '@ngrx/signals';
 
 @Component({
   selector: 'app-root',
@@ -28,14 +31,24 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  appStore = inject(AppStore);
   pomodoroStore = inject(PomodoroStore);
+  settingsStore = inject(SettingsStore);
   title = 'Pom Pom';
-  focusDuration: number = 25;
+  settingsData: SettingsState;
+
+  constructor() {
+    this.settingsData = getState(this.settingsStore);
+  }
 
   onVisibilityChange(visible: boolean) {
     if (!visible) {
-      this.appStore.changeSettingsDialog(false);
+      this.settingsStore.changeSettingsDialog(false);
     }
+  }
+
+  onSaveButtonClicked() {
+    console.log(getState(this.settingsStore));
+    this.settingsStore.saveSettings(this.settingsData);
+    console.log(getState(this.settingsStore));
   }
 }

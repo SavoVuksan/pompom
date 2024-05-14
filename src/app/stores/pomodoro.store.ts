@@ -10,6 +10,7 @@ import { computed } from '@angular/core';
 import { tap, timer } from 'rxjs';
 
 const initialState: PomodoroData = {
+  // Remove the fields that are already handled by the settings store
   focusDuration: new Duration(0, 10),
   longBreakDuration: new Duration(0, 5),
   longBreakInterval: 4,
