@@ -1,20 +1,10 @@
 import { Subscription, min } from 'rxjs';
 
-export type TimerState = 'not-started' | 'running' | 'paused' | 'completed';
-
-export type TimerData = {
-  currentTime: Duration;
-  maxTime: Duration;
-  state: TimerState;
-};
-
 export type PomodoroState = 'focus' | 'break';
 
 export type PomodoroData = {
   state: PomodoroState;
   pomodoroCount: number;
-  timerData: TimerData;
-  timer?: Subscription;
 };
 
 export class Duration {

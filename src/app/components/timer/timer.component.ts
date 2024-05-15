@@ -1,4 +1,11 @@
-import { Component, HostBinding, OnInit, effect, inject } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  OnInit,
+  WritableSignal,
+  effect,
+  inject,
+} from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import {
@@ -16,6 +23,10 @@ import { AsyncPipe } from '@angular/common';
 import { PomodoroStore } from '../../stores/pomodoro.store';
 import { BreakCounterComponent } from '../break-counter/break-counter.component';
 import { SettingsStore } from '../../stores/settings.store';
+import { TimerState, TimerStore } from '../../stores/timer.store';
+import { getState } from '@ngrx/signals';
+import { STATE_SIGNAL } from '@ngrx/signals/src/state-signal';
+import { Signal } from '@ngrx/signals/src/deep-signal';
 
 @Component({
   selector: 'timer',
@@ -26,43 +37,29 @@ import { SettingsStore } from '../../stores/settings.store';
   host: { class: 'p-4 m-4' },
   providers: [],
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent {
   pomodoroStore = inject(PomodoroStore);
   settingsStore = inject(SettingsStore);
+  timerStore = inject(TimerStore);
 
   constructor() {
     effect(
       () => {
-        if (
-          this.pomodoroStore.timerData.state() === 'completed' &&
-          this.pomodoroStore.state() === 'focus'
-        ) {
-          this.pomodoroStore.stopTimer();
-          this.pomodoroStore.switchToBreak(
-            this.settingsStore.shortBreakDuration()
-          );
-        } else if (
-          this.pomodoroStore.timerData.state() === 'completed' &&
-          this.pomodoroStore.state() === 'break'
-        ) {
-          this.pomodoroStore.stopTimer();
-          this.pomodoroStore.switchToFocus(this.settingsStore.focusDuration());
+        if (this.timerStore.isFinished()) {
+          this.pomodoroStore.switchState();
         }
       },
       { allowSignalWrites: true }
     );
   }
 
-  ngOnInit(): void {}
-
   onClick() {
-    if (
-      this.pomodoroStore.timerData.state() === 'not-started' ||
-      this.pomodoroStore.timerData.state() === 'paused'
-    ) {
-      this.pomodoroStore.startTimer();
-    } else if (this.pomodoroStore.timerData.state() === 'running') {
-      this.pomodoroStore.pauseTimer();
+    if (this.timerStore.state() === 'not-started') {
+      this.timerStore.startTimer();
+    } else if (this.timerStore.state() === 'running') {
+      this.timerStore.pauseTimer();
+    } else if (this.timerStore.state() === 'paused') {
+      this.timerStore.resumeTimer();
     }
   }
 }

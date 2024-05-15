@@ -1,5 +1,7 @@
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { Duration } from '../models/timer.model';
+import { inject } from '@angular/core';
+import { TimerStore } from './timer.store';
 
 export type SettingsState = {
   focusDuration: Duration;
@@ -22,12 +24,14 @@ export const SettingsStore = signalStore(
     providedIn: 'root',
   },
   withState(SettingsInitialState),
-  withMethods((store) => ({
-    changeSettingsDialog: (visible: boolean) => {
-      patchState(store, { isSettingsDialogOpen: visible });
-    },
-    saveSettings: (settings: SettingsState) => {
-      patchState(store, settings);
-    },
-  }))
+  withMethods((store) => {
+    return {
+      changeSettingsDialog: (visible: boolean) => {
+        patchState(store, { isSettingsDialogOpen: visible });
+      },
+      saveSettings: (settings: SettingsState) => {
+        patchState(store, settings);
+      },
+    };
+  })
 );
