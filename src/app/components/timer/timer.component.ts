@@ -15,6 +15,7 @@ import {
 import { AsyncPipe } from '@angular/common';
 import { PomodoroStore } from '../../stores/pomodoro.store';
 import { BreakCounterComponent } from '../break-counter/break-counter.component';
+import { SettingsStore } from '../../stores/settings.store';
 
 @Component({
   selector: 'timer',
@@ -27,6 +28,7 @@ import { BreakCounterComponent } from '../break-counter/break-counter.component'
 })
 export class TimerComponent implements OnInit {
   pomodoroStore = inject(PomodoroStore);
+  settingsStore = inject(SettingsStore);
 
   constructor() {
     effect(
@@ -36,13 +38,15 @@ export class TimerComponent implements OnInit {
           this.pomodoroStore.state() === 'focus'
         ) {
           this.pomodoroStore.stopTimer();
-          this.pomodoroStore.switchToBreak();
+          this.pomodoroStore.switchToBreak(
+            this.settingsStore.shortBreakDuration()
+          );
         } else if (
           this.pomodoroStore.timerData.state() === 'completed' &&
           this.pomodoroStore.state() === 'break'
         ) {
           this.pomodoroStore.stopTimer();
-          this.pomodoroStore.switchToFocus();
+          this.pomodoroStore.switchToFocus(this.settingsStore.focusDuration());
         }
       },
       { allowSignalWrites: true }

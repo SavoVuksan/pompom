@@ -8,18 +8,14 @@ import {
 import { Duration, PomodoroData, TimerData } from '../models/timer.model';
 import { computed } from '@angular/core';
 import { tap, timer } from 'rxjs';
+import { SettingsInitialState } from './settings.store';
 
 const initialState: PomodoroData = {
-  // Remove the fields that are already handled by the settings store
-  focusDuration: new Duration(0, 10),
-  longBreakDuration: new Duration(0, 5),
-  longBreakInterval: 4,
   pomodoroCount: 0,
-  shortBreakDuration: new Duration(0, 2),
   state: 'focus',
   timerData: {
-    currentTime: new Duration(0, 10),
-    maxTime: new Duration(0, 10),
+    currentTime: Duration.fromDuration(SettingsInitialState.focusDuration),
+    maxTime: Duration.fromDuration(SettingsInitialState.focusDuration),
     state: 'not-started',
   },
   timer: undefined,
@@ -28,9 +24,8 @@ const initialState: PomodoroData = {
 export const PomodoroStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withComputed(({ state, pomodoroCount, longBreakInterval, timerData }) => ({
+  withComputed(({ state, pomodoroCount, timerData }) => ({
     title: computed(() => (state() === 'focus' ? 'Focus' : 'Break')),
-    finishedTimers: computed(() => pomodoroCount() % (longBreakInterval() + 1)),
     actionButtonLabel: computed(() => {
       switch (timerData.state()) {
         case 'not-started':
@@ -45,64 +40,28 @@ export const PomodoroStore = signalStore(
     }),
   })),
   withMethods((store) => ({
-    switchToBreak() {
-      if (
-        store.pomodoroCount() + 1 !== 0 &&
-        (store.pomodoroCount() + 1) % store.longBreakInterval() === 0
-      ) {
-        patchState(store, {
-          state: 'break',
-          timerData: {
-            currentTime: Duration.fromDuration(store.longBreakDuration()),
-            maxTime: Duration.fromDuration(store.longBreakDuration()),
-            state: 'not-started',
-          },
-        });
-      } else {
-        patchState(store, {
-          state: 'break',
-          timerData: {
-            currentTime: Duration.fromDuration(store.shortBreakDuration()),
-            maxTime: Duration.fromDuration(store.shortBreakDuration()),
-            state: 'not-started',
-          },
-        });
-      }
+    switchToBreak(breakDuration: Duration) {
+      patchState(store, {
+        state: 'break',
+        timerData: {
+          currentTime: Duration.fromDuration(breakDuration),
+          maxTime: Duration.fromDuration(breakDuration),
+          state: 'not-started',
+        },
+      });
       patchState(store, {
         pomodoroCount: store.pomodoroCount() + 1,
       });
     },
-    switchToFocus() {
+    switchToFocus(focusDuration: Duration) {
       patchState(store, {
         state: 'focus',
         timerData: {
-          currentTime: Duration.fromDuration(store.focusDuration()),
-          maxTime: Duration.fromDuration(store.focusDuration()),
+          currentTime: Duration.fromDuration(focusDuration),
+          maxTime: Duration.fromDuration(focusDuration),
           state: 'not-started',
         },
       });
-    },
-    getTimerStoreData() {
-      if (store.state() === 'focus') {
-        return {
-          currentTime: store.focusDuration(),
-          maxTime: store.focusDuration(),
-          state: 'not-started',
-        } satisfies TimerData;
-      } else {
-        return {
-          currentTime: store.shortBreakDuration(),
-          maxTime: store.shortBreakDuration(),
-          state: 'not-started',
-        } satisfies TimerData;
-      }
-    },
-    getBreakCounterColor(counter: number) {
-      if (counter < store.finishedTimers()) {
-        return 'active';
-      } else {
-        return 'inactive';
-      }
     },
     startTimer() {
       patchState(store, {
@@ -154,6 +113,18 @@ export const PomodoroStore = signalStore(
           timer: undefined,
         });
       }
+    },
+    resetTimer(duration: Duration) {
+      if (store.timer && store.timer()) {
+        store.timer()?.unsubscribe();
+      }
+      patchState(store, {
+        timerData: {
+          state: 'not-started',
+          currentTime: duration,
+          maxTime: duration,
+        },
+      });
     },
   }))
 );

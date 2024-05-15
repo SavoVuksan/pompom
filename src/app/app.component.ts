@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { SettingsState, SettingsStore } from './stores/settings.store';
 import { STATE_SIGNAL } from '@ngrx/signals/src/state-signal';
 import { getState } from '@ngrx/signals';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @Component({
   selector: 'app-root',
@@ -26,29 +27,12 @@ import { getState } from '@ngrx/signals';
     DialogModule,
     ButtonModule,
     InputNumberModule,
+    SettingsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   pomodoroStore = inject(PomodoroStore);
-  settingsStore = inject(SettingsStore);
   title = 'Pom Pom';
-  settingsData: SettingsState;
-
-  constructor() {
-    this.settingsData = getState(this.settingsStore);
-  }
-
-  onVisibilityChange(visible: boolean) {
-    if (!visible) {
-      this.settingsStore.changeSettingsDialog(false);
-    }
-  }
-
-  onSaveButtonClicked() {
-    console.log(getState(this.settingsStore));
-    this.settingsStore.saveSettings(this.settingsData);
-    console.log(getState(this.settingsStore));
-  }
 }

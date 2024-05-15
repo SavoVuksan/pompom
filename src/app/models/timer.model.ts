@@ -13,10 +13,6 @@ export type PomodoroState = 'focus' | 'break';
 export type PomodoroData = {
   state: PomodoroState;
   pomodoroCount: number;
-  focusDuration: Duration;
-  shortBreakDuration: Duration;
-  longBreakDuration: Duration;
-  longBreakInterval: number;
   timerData: TimerData;
   timer?: Subscription;
 };

@@ -9,17 +9,19 @@ export type SettingsState = {
   isSettingsDialogOpen: boolean;
 };
 
+export const SettingsInitialState: SettingsState = {
+  focusDuration: new Duration(25, 0),
+  longBreakDuration: new Duration(15, 0),
+  shortBreakDuration: new Duration(5, 0),
+  longBreakInterval: 4,
+  isSettingsDialogOpen: false,
+};
+
 export const SettingsStore = signalStore(
   {
     providedIn: 'root',
   },
-  withState({
-    focusDuration: new Duration(25, 0),
-    longBreakDuration: new Duration(15, 0),
-    shortBreakDuration: new Duration(5, 0),
-    longBreakInterval: 4,
-    isSettingsDialogOpen: false,
-  } as SettingsState),
+  withState(SettingsInitialState),
   withMethods((store) => ({
     changeSettingsDialog: (visible: boolean) => {
       patchState(store, { isSettingsDialogOpen: visible });
