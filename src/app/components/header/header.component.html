@@ -3,4 +3,10 @@
   <h1 class="text-3xl font-bold">Pom Pom</h1>
   <p class="text-sm font-light">Another Pomodoro Timer</p>
 </div>
-<span class="pi pi-cog" style="font-size: 1.5rem"></span>
+<p-button
+  icon="pi pi-cog"
+  [rounded]="true"
+  [text]="true"
+  severity="secondary"
+  (onClick)="onSettingButtonClicked()"
+/>

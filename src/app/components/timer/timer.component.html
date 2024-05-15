@@ -6,21 +6,13 @@
   </ng-template>
 
   <div class="font-bold text-5xl text-black">
-    {{
-      this.pomodoroStore.timerData
-        .currentTime()
-        .minutes.toString()
-        .padStart(2, "0")
-    }}:{{
-      this.pomodoroStore.timerData
-        .currentTime()
-        .seconds.toString()
-        .padStart(2, "0")
+    {{ this.timerStore.currentTime().minutes.toString().padStart(2, "0") }}:{{
+      this.timerStore.currentTime().seconds.toString().padStart(2, "0")
     }}
   </div>
 
   <p-button
-    [label]="this.pomodoroStore.actionButtonLabel()"
+    [label]="this.timerStore.stateName()"
     (onClick)="onClick()"
   ></p-button>
   <ng-template pTemplate="footer">
