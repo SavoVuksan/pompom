@@ -8,7 +8,7 @@ import {
 import { Duration } from '../models/timer.model';
 import { SettingsInitialState } from './settings.store';
 import { computed } from '@angular/core';
-import { Observable, interval, takeWhile, tap } from 'rxjs';
+import { Observable, Subscription, interval, takeWhile, tap } from 'rxjs';
 
 export type TimerStatus = 'not-started' | 'running' | 'paused' | 'completed';
 
@@ -16,13 +16,14 @@ export type TimerState = {
   currentTime: Duration;
   maxTime: Duration;
   state: TimerStatus;
-  timer?: Observable<number>;
+  timer: Subscription | undefined;
 };
 
 const initialState: TimerState = {
   currentTime: Duration.fromDuration(SettingsInitialState.focusDuration),
   maxTime: Duration.fromDuration(SettingsInitialState.focusDuration),
   state: 'not-started',
+  timer: undefined,
 };
 
 export const TimerStore = signalStore(
@@ -67,10 +68,13 @@ export const TimerStore = signalStore(
         }),
         takeWhile(() => !store.isFinished())
       );
-      patchState(store, { timer: timer });
-      timer.subscribe();
+      patchState(store, { timer: timer.subscribe() });
     },
-    stopTimer: () => {},
+    stopTimer: () => {
+      if (store.timer() !== undefined) {
+        store.timer!()!.unsubscribe();
+      }
+    },
     pauseTimer: () => {
       patchState(store, {
         state: 'paused',
