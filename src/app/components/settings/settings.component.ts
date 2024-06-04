@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { PomodoroStore } from '../../stores/pomodoro.store';
 import { TimerStore } from '../../stores/timer.store';
+import { Duration } from '../../models/timer.model';
 
 @Component({
   selector: 'app-settings',
@@ -33,5 +34,10 @@ export class SettingsComponent {
 
   onSaveButtonClicked() {
     this.settingsStore.saveSettings(this.settingsData);
+    this.pomodoroStore.setState('focus');
+    this.timerStore.stopTimer();
+    this.timerStore.setTime(
+      Duration.fromDuration(this.settingsStore.focusDuration())
+    );
   }
 }

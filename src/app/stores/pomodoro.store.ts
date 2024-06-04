@@ -5,7 +5,7 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { Duration, PomodoroData } from '../models/timer.model';
+import { Duration, PomodoroData, PomodoroState } from '../models/timer.model';
 import { computed, inject } from '@angular/core';
 import { tap, timer } from 'rxjs';
 import { SettingsInitialState, SettingsStore } from './settings.store';
@@ -53,6 +53,11 @@ export const PomodoroStore = signalStore(
             Duration.fromDuration(settingsStore.focusDuration())
           );
         }
+      },
+      setState: (state: PomodoroState) => {
+        patchState(store, {
+          state: state,
+        });
       },
     };
   })
