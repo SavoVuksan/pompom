@@ -35,4 +35,6 @@ import { SettingsComponent } from './components/settings/settings.component';
 export class AppComponent {
   pomodoroStore = inject(PomodoroStore);
   title = 'Pom Pom';
+
+  constructor() {}
 }

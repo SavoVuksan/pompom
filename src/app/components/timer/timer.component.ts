@@ -27,6 +27,7 @@ import { TimerState, TimerStore } from '../../stores/timer.store';
 import { getState } from '@ngrx/signals';
 import { STATE_SIGNAL } from '@ngrx/signals/src/state-signal';
 import { Signal } from '@ngrx/signals/src/deep-signal';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'timer',
@@ -41,6 +42,7 @@ export class TimerComponent {
   pomodoroStore = inject(PomodoroStore);
   settingsStore = inject(SettingsStore);
   timerStore = inject(TimerStore);
+  notificationService = inject(NotificationService);
 
   constructor() {
     effect(
@@ -54,6 +56,7 @@ export class TimerComponent {
   }
 
   onClick() {
+    this.notificationService.requestPermission();
     if (this.timerStore.state() === 'not-started') {
       this.timerStore.startTimer();
     } else if (this.timerStore.state() === 'running') {

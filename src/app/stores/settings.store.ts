@@ -9,6 +9,8 @@ export type SettingsState = {
   longBreakDuration: Duration;
   longBreakInterval: number;
   isSettingsDialogOpen: boolean;
+  askedNotificationPermission: boolean;
+  recieveNotifications: boolean;
 };
 
 export const SettingsInitialState: SettingsState = {
@@ -17,6 +19,8 @@ export const SettingsInitialState: SettingsState = {
   shortBreakDuration: new Duration(5, 0),
   longBreakInterval: 4,
   isSettingsDialogOpen: false,
+  askedNotificationPermission: false,
+  recieveNotifications: false,
 };
 
 export const SettingsStore = signalStore(
@@ -31,6 +35,12 @@ export const SettingsStore = signalStore(
       },
       saveSettings: (settings: SettingsState) => {
         patchState(store, settings);
+      },
+      setRecieveNotifications: (recieve: boolean) => {
+        patchState(store, { recieveNotifications: recieve });
+      },
+      setAskedNotificationPermissions: (asked: boolean) => {
+        patchState(store, { askedNotificationPermission: asked });
       },
     };
   })
