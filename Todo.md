@@ -5,3 +5,6 @@
 - [] When timer finishes it should notify user (best without the use of any server)
 
 # Quality
+
+- [] PomPom Icon is not shown in header on github build.
+- [] PomPom Favicon is not shown on github build.
