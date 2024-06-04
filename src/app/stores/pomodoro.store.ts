@@ -10,6 +10,7 @@ import { computed, inject } from '@angular/core';
 import { tap, timer } from 'rxjs';
 import { SettingsInitialState, SettingsStore } from './settings.store';
 import { TimerStore } from './timer.store';
+import { NotificationService } from '../services/notification.service';
 
 const initialState: PomodoroData = {
   pomodoroCount: 0,
@@ -25,10 +26,12 @@ export const PomodoroStore = signalStore(
   withMethods((store) => {
     const settingsStore = inject(SettingsStore);
     const timerStore = inject(TimerStore);
+    const notificationService = inject(NotificationService);
 
     return {
       switchState: () => {
         if (store.state() === 'focus') {
+          notificationService.showNotification('Time for a break.');
           patchState(store, {
             state: 'break',
             pomodoroCount: store.pomodoroCount() + 1,
@@ -46,6 +49,7 @@ export const PomodoroStore = signalStore(
             );
           }
         } else {
+          notificationService.showNotification("Let's focus again.");
           patchState(store, {
             state: 'focus',
           });
