@@ -13,6 +13,8 @@ import { SettingsState, SettingsStore } from './stores/settings.store';
 import { STATE_SIGNAL } from '@ngrx/signals/src/state-signal';
 import { getState } from '@ngrx/signals';
 import { SettingsComponent } from './components/settings/settings.component';
+import { TimerState } from './stores/timer.store';
+import { Duration } from './models/timer.model';
 
 @Component({
   selector: 'app-root',

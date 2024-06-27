@@ -29,4 +29,9 @@ export class Duration {
   static fromDuration(duration: Duration) {
     return new Duration(duration.minutes, duration.seconds);
   }
+  static fromSeconds(seconds: number) {
+    const min = Number.parseInt((seconds / 60).toString());
+    const sec = seconds % 60;
+    return new Duration(min, sec);
+  }
 }

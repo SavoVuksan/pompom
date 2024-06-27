@@ -44,6 +44,7 @@ export class TimerComponent {
   timerStore = inject(TimerStore);
   notificationService = inject(NotificationService);
 
+
   constructor() {
     effect(
       () => {
@@ -64,5 +65,9 @@ export class TimerComponent {
     } else if (this.timerStore.state() === 'paused') {
       this.timerStore.resumeTimer();
     }
+  }
+  skipTimer() {
+    this.timerStore.stopTimer();
+    this.pomodoroStore.switchState();
   }
 }
