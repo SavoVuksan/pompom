@@ -16,7 +16,7 @@ export type TimerState = {
   currentTime: Duration;
   maxTime: Duration;
   state: TimerStatus;
-  timer: Subscription | undefined;
+  timer: Worker | undefined;
 };
 
 const initialState: TimerState = {
@@ -71,10 +71,12 @@ export const TimerStore = signalStore(
         }
       };
       worker.postMessage(store.maxTime());
+      patchState(store, { timer: worker });
     },
     stopTimer: () => {
       if (store.timer() !== undefined) {
-        store.timer!()!.unsubscribe();
+        store.timer()?.terminate();
+        patchState(store, { timer: undefined })
       }
     },
     pauseTimer: () => {
@@ -82,7 +84,7 @@ export const TimerStore = signalStore(
         state: 'paused',
       });
     },
-    restartTimer: () => {},
+    restartTimer: () => { },
     resumeTimer: () => {
       patchState(store, { state: 'running' });
     },

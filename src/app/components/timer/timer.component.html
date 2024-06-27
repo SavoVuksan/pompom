@@ -7,14 +7,13 @@
 
   <div class="font-bold text-5xl text-black">
     {{ this.timerStore.currentTime().minutes.toString().padStart(2, "0") }}:{{
-      this.timerStore.currentTime().seconds.toString().padStart(2, "0")
+    this.timerStore.currentTime().seconds.toString().padStart(2, "0")
     }}
   </div>
-
-  <p-button
-    [label]="this.timerStore.stateName()"
-    (onClick)="onClick()"
-  ></p-button>
+  <div class="flex gap-4 justify-center">
+    <p-button [label]="this.timerStore.stateName()" (onClick)="onClick()"></p-button>
+    <p-button [label]="'Skip'" [disabled]="this.timerStore.state() !== 'running'" (onClick)="skipTimer()"></p-button>
+  </div>
   <ng-template pTemplate="footer">
     <div class="p-4 top-line">
       <break-counter />
