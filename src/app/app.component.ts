@@ -5,16 +5,11 @@ import { TimerComponent } from './components/timer/timer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
-import { AppStore } from './stores/app.store';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PomodoroStore } from './stores/pomodoro.store';
 import { FormsModule } from '@angular/forms';
-import { SettingsState, SettingsStore } from './stores/settings.store';
-import { STATE_SIGNAL } from '@ngrx/signals/src/state-signal';
-import { getState } from '@ngrx/signals';
 import { SettingsComponent } from './components/settings/settings.component';
-import { TimerState } from './stores/timer.store';
-import { Duration } from './models/timer.model';
+import { UserDataService } from './services/user-data.service';
 
 @Component({
   selector: 'app-root',
@@ -37,6 +32,7 @@ import { Duration } from './models/timer.model';
 export class AppComponent {
   pomodoroStore = inject(PomodoroStore);
   title = 'Pom Pom';
+  userDataService = inject(UserDataService);
 
   constructor() {}
 }
