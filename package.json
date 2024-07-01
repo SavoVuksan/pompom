@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCustom",
-    "build:ci": "ng build -c production --base-href https://savovuksan.github.io/pompom/",
+    "build:ci": "ng build -c production --base-href https://savovuksan.github.io/pompom/ --deploy-url=https://savovuksan.github.io/pompom/",
     "lint": "ng lint",
     "compodoc:build": "compodoc -p tsconfig.doc.json",
     "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
