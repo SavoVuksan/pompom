@@ -13,4 +13,23 @@ import { SettingsStore } from '../../stores/settings.store';
 export class BreakCounterComponent {
   pomodoroStore = inject(PomodoroStore);
   settingsStore = inject(SettingsStore);
+
+  isActive(index: number) {
+    let finishedTimers = 0;
+
+    if (
+      this.pomodoroStore.pomodoroCount() <=
+      this.settingsStore.longBreakInterval()
+    ) {
+      finishedTimers = this.pomodoroStore.pomodoroCount();
+    } else {
+      finishedTimers =
+        this.pomodoroStore.pomodoroCount() %
+        this.settingsStore.longBreakInterval();
+      if (finishedTimers === 0) {
+        finishedTimers = this.settingsStore.longBreakInterval();
+      }
+    }
+    return index < finishedTimers;
+  }
 }
