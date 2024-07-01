@@ -7,6 +7,7 @@
 - [x] User should be able to skip timer
 - [ ] Add option for darkmode (and automatic system recognition for darkmode)
 - [ ] Add option to ask again for notification permission (maybe in settings page)
+- [ ] Open webapp when clicking on notification
 
 # Quality
 
