@@ -10,3 +10,5 @@
 
 - [x] PomPom Icon is not shown in header on github build.
 - [x] PomPom Favicon is not shown on github build.
+- [] Reduce image size of logo and favicon to reasonable size
+- [] Run linter and code formatter over whole project as cleanup
