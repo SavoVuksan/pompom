@@ -8,5 +8,5 @@
 
 # Quality
 
-- [] PomPom Icon is not shown in header on github build.
-- [] PomPom Favicon is not shown on github build.
+- [x] PomPom Icon is not shown in header on github build.
+- [x] PomPom Favicon is not shown on github build.
