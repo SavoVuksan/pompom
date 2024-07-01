@@ -5,6 +5,8 @@
 - [x] Finished Focus Timer amount should be shown and counting
 - [x] Settings should be saved for the user
 - [x] User should be able to skip timer
+- [ ] Add option for darkmode (and automatic system recognition for darkmode)
+- [ ] Add option to ask again for notification permission (maybe in settings page)
 
 # Quality
 
