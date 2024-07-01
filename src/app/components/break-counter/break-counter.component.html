@@ -1,6 +1,12 @@
 <div class="flex justify-center gap-4">
   @for (c of [].constructor(this.settingsStore.longBreakInterval()); track
   $index) {
-  <div class="rounded-full h-4 w-4"></div>
+  <div
+    class="rounded-full h-4 w-4"
+    [ngClass]="{
+      inactive: !this.isActive($index),
+      active: this.isActive($index)
+    }"
+  ></div>
   }
 </div>
