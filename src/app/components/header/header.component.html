@@ -3,10 +3,20 @@
   <h1 class="text-3xl font-bold">Pom Pom</h1>
   <p class="text-sm font-light">Another Pomodoro Timer</p>
 </div>
-<p-button
-  icon="pi pi-cog"
-  [rounded]="true"
-  [text]="true"
-  severity="secondary"
-  (onClick)="onSettingButtonClicked()"
-/>
+<div class="gap-2 flex">
+  <p-button
+    [icon]="getThemeSwitchIcon()"
+    [rounded]="true"
+    [text]="true"
+    severity="secondary"
+    (onClick)="onThemeSwitchClick()"
+  >
+  </p-button>
+  <p-button
+    icon="pi pi-cog"
+    [rounded]="true"
+    [text]="true"
+    severity="secondary"
+    (onClick)="onSettingButtonClicked()"
+  />
+</div>
