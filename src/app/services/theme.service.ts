@@ -29,9 +29,12 @@ export class ThemeService {
     );
   }
   changeTheme(theme: Theme) {
-    (
-      this.document.getElementById('app-theme') as HTMLLinkElement
-    ).href = `${theme}.css`;
-    this.selectedTheme = theme;
+    const element = this.document.getElementById(
+      'app-theme'
+    ) as HTMLLinkElement;
+    if (element) {
+      element.href = `${theme}.css`;
+      this.selectedTheme = theme;
+    }
   }
 }
