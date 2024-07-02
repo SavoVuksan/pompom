@@ -29,7 +29,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/light.scss",
+                "inject": false,
+                "bundleName": "light"
+              },
+              {
+              "input": "src/dark.scss",
+              "inject": false,
+              "bundleName": "dark"
+            }
             ],
             "scripts": [],
             "webWorkerTsConfig": "tsconfig.worker.json"

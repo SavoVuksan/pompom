@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TimerComponent } from './components/timer/timer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -10,6 +10,7 @@ import { PomodoroStore } from './stores/pomodoro.store';
 import { FormsModule } from '@angular/forms';
 import { SettingsComponent } from './components/settings/settings.component';
 import { UserDataService } from './services/user-data.service';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,6 @@ export class AppComponent {
   pomodoroStore = inject(PomodoroStore);
   title = 'Pom Pom';
   userDataService = inject(UserDataService);
-
+  themeService = inject(ThemeService);
   constructor() {}
 }

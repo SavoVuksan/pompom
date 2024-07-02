@@ -1,18 +1,25 @@
 <p-card class="text-center">
   <ng-template pTemplate="header">
-    <h1 class="font-bold text-4xl text-black p-4">
+    <h1 class="font-bold text-4xl p-4">
       {{ this.pomodoroStore.title() }}
     </h1>
   </ng-template>
 
-  <div class="font-bold text-5xl text-black">
+  <div class="font-bold text-5xl">
     {{ this.timerStore.currentTime().minutes.toString().padStart(2, "0") }}:{{
-    this.timerStore.currentTime().seconds.toString().padStart(2, "0")
+      this.timerStore.currentTime().seconds.toString().padStart(2, "0")
     }}
   </div>
   <div class="flex gap-4 justify-center">
-    <p-button [label]="this.timerStore.stateName()" (onClick)="onClick()"></p-button>
-    <p-button [label]="'Skip'" [disabled]="this.timerStore.state() !== 'running'" (onClick)="skipTimer()"></p-button>
+    <p-button
+      [label]="this.timerStore.stateName()"
+      (onClick)="onClick()"
+    ></p-button>
+    <p-button
+      [label]="'Skip'"
+      [disabled]="this.timerStore.state() !== 'running'"
+      (onClick)="skipTimer()"
+    ></p-button>
   </div>
   <ng-template pTemplate="footer">
     <div class="p-4 top-line">
