@@ -39,6 +39,7 @@ export class SettingsComponent {
       this.timerStore.setTime(
         Duration.fromDuration(this.settingsStore.focusDuration())
       );
+      this.audioService.setVolume(this.settingsStore.volume());
     }
     this.settingsData = getState(this.settingsStore);
   }
