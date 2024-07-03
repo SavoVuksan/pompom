@@ -33,6 +33,15 @@
         [useGrouping]="false"
         [(ngModel)]="this.settingsData.longBreakInterval"
       />
+      <label for="volume">Volume</label>
+      <p-slider
+        [step]="0.01"
+        [min]="0"
+        [max]="1"
+        id="volume"
+        [(ngModel)]="this.settingsData.volume"
+      >
+      </p-slider>
     </div>
     <div class="flex justify-end gap-2">
       <p-button

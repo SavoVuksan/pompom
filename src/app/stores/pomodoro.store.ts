@@ -11,6 +11,7 @@ import { tap, timer } from 'rxjs';
 import { SettingsInitialState, SettingsStore } from './settings.store';
 import { TimerStore } from './timer.store';
 import { NotificationService } from '../services/notification.service';
+import { AudioService } from '../services/audio.service';
 
 const initialState: PomodoroData = {
   pomodoroCount: 0,
@@ -27,9 +28,11 @@ export const PomodoroStore = signalStore(
     const settingsStore = inject(SettingsStore);
     const timerStore = inject(TimerStore);
     const notificationService = inject(NotificationService);
+    const audioService = inject(AudioService);
 
     return {
       switchState: () => {
+        audioService.playSound();
         if (store.state() === 'focus') {
           notificationService.showNotification('Time for a break.');
           patchState(store, {
