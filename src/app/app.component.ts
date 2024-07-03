@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { SettingsComponent } from './components/settings/settings.component';
 import { UserDataService } from './services/user-data.service';
 import { ThemeService } from './services/theme.service';
+import { tap, timeout, timer } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -35,5 +36,7 @@ export class AppComponent {
   title = 'Pom Pom';
   userDataService = inject(UserDataService);
   themeService = inject(ThemeService);
-  constructor() {}
+  constructor() {
+    let a = new Audio();
+  }
 }

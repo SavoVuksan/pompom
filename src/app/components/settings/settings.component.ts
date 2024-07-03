@@ -9,11 +9,19 @@ import { PomodoroStore } from '../../stores/pomodoro.store';
 import { TimerStore } from '../../stores/timer.store';
 import { Duration } from '../../models/timer.model';
 import { UserDataService } from '../../services/user-data.service';
+import { SliderModule } from 'primeng/slider';
+import { AudioService } from '../../services/audio.service';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [FormsModule, DialogModule, InputNumberModule, ButtonModule],
+  imports: [
+    FormsModule,
+    DialogModule,
+    InputNumberModule,
+    ButtonModule,
+    SliderModule,
+  ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
 })
@@ -22,6 +30,7 @@ export class SettingsComponent {
   userDataService = inject(UserDataService);
   pomodoroStore = inject(PomodoroStore);
   timerStore = inject(TimerStore);
+  audioService = inject(AudioService);
   settingsData: SettingsState;
 
   constructor() {
@@ -30,6 +39,7 @@ export class SettingsComponent {
       this.timerStore.setTime(
         Duration.fromDuration(this.settingsStore.focusDuration())
       );
+      this.audioService.setVolume(this.settingsStore.volume());
     }
     this.settingsData = getState(this.settingsStore);
   }
@@ -48,5 +58,6 @@ export class SettingsComponent {
       Duration.fromDuration(this.settingsStore.focusDuration())
     );
     this.userDataService.saveSettings(getState(this.settingsStore));
+    this.audioService.setVolume(this.settingsData.volume);
   }
 }

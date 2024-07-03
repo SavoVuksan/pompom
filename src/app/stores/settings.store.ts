@@ -11,6 +11,7 @@ export type SettingsState = {
   isSettingsDialogOpen: boolean;
   askedNotificationPermission: boolean;
   recieveNotifications: boolean;
+  volume: number;
 };
 
 export const SettingsInitialState: SettingsState = {
@@ -21,6 +22,7 @@ export const SettingsInitialState: SettingsState = {
   isSettingsDialogOpen: false,
   askedNotificationPermission: false,
   recieveNotifications: false,
+  volume: 1,
 };
 
 export const SettingsStore = signalStore(
