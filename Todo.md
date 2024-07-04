@@ -9,6 +9,7 @@
 - [ ] Add option to ask again for notification permission (maybe in settings page)
 - [ ] Open webapp when clicking on notification
 - [x] Add sound effect for finished timer
+- [ ] Add button to reset settings to default
 
 # Quality
 
