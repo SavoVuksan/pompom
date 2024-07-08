@@ -7,7 +7,7 @@
 - [x] User should be able to skip timer
 - [x] Add option for darkmode (and automatic system recognition for darkmode)
 - [ ] Add option to ask again for notification permission (maybe in settings page)
-- [ ] Open webapp when clicking on notification
+- [x] Open webapp when clicking on notification (After some testing it seems that chrome does not open the webapp but firefox does)
 - [x] Add sound effect for finished timer
 - [ ] Add button to reset settings to default
 
