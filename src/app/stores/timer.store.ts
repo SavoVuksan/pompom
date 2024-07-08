@@ -80,12 +80,14 @@ export const TimerStore = signalStore(
       }
     },
     pauseTimer: () => {
+      store.timer()?.postMessage({ pause: true })
       patchState(store, {
         state: 'paused',
       });
     },
     restartTimer: () => { },
     resumeTimer: () => {
+      store.timer()?.postMessage({ pause: false, minutes: store.currentTime().minutes, seconds: store.currentTime().seconds })
       patchState(store, { state: 'running' });
     },
     setTime: (duration: Duration) => {
