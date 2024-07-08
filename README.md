@@ -1,10 +1,29 @@
 <p align="center">
-<img src="./docs/logo.png" width="400px">
+<img src="./docs/logo-transparent.png" width="400px">
 </p>
 
 # PomPom
 
 PomPom is a pomodoro timer app made with Angular. I started this project to learn new Angular features. Like Signals and the NgRx SignalStore.
+
+# Features
+
+## Switchable Light-Dark Mode
+<video width="720" controls>
+  <source src="./docs/PomPomShowcase1.mp4" type="video/mp4">
+</video>
+
+
+## Customizable Timer Settings
+<video  width="720" controls>
+  <source src="./docs/PomPomShowcase2.mp4" type="video/mp4">
+</video>
+
+
+## Notifications
+<video  width="720" controls>
+  <source src="./docs/PomPomShowcase3.mp4" type="video/mp4">
+</video>
 
 ## PenPot UI Design
 
