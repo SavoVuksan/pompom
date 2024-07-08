@@ -6,6 +6,9 @@
 
 PomPom is a pomodoro timer app made with Angular. I started this project to learn new Angular features like Signals and the NgRx SignalStore.
 
+# Try it out
+[PomPom](https://savovuksan.github.io/pompom)
+
 # Features
 
 ## Switchable Light-Dark Mode
