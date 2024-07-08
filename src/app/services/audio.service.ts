@@ -15,6 +15,8 @@ export class AudioService {
   }
 
   playSound() {
+    this.ringSound.pause();
+    this.ringSound.currentTime = 0;
     this.ringSound.play();
   }
 
